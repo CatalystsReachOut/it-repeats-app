@@ -1,25 +1,6 @@
-class QuestionPaperModel {
-  late final String? departmentName;
-  late final String? semester;
-  late final String? subjectName;
-  late final String? examName;
-  late final String? fileURL;
-  late final String? year;
-  late final String? uploaderName;
-  late final String? uploadDate;
-  late final String? iD;
+import 'package:it_repeats/features/domain/entities/question_paper_entity.dart';
 
-  QuestionPaperModel(
-      {this.departmentName,
-      this.semester,
-      this.subjectName,
-      this.examName,
-      this.fileURL,
-      this.year,
-      this.uploaderName,
-      this.uploadDate,
-      this.iD});
-
+class QuestionPaperModel extends QuestionPaperEntity {
   QuestionPaperModel.fromJson(Map<String, dynamic> json) {
     departmentName = json['departmentName'];
     semester = json['semester'];
@@ -27,9 +8,7 @@ class QuestionPaperModel {
     examName = json['examName'];
     fileURL = json['fileURL'];
     year = json['year'];
-    uploaderName = json['uploaderName'];
-    uploadDate = json['uploadDate'];
-    iD = json['ID'];
+    id = json['ID'];
   }
 
   Map<String, dynamic> toJson() {
@@ -40,9 +19,7 @@ class QuestionPaperModel {
     data['examName'] = examName;
     data['fileURL'] = fileURL;
     data['year'] = year;
-    data['uploaderName'] = uploaderName;
-    data['uploadDate'] = uploadDate;
-    data['ID'] = iD;
+    data['ID'] = id;
     return data;
   }
 }
