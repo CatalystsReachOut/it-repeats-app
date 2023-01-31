@@ -1,12 +1,11 @@
-import 'package:it_repeats/features/domain/entities/question_paper_entity.dart';
-import 'package:it_repeats/features/domain/repositories/local_repository.dart';
+import 'package:it_repeats/features/domain/repositories/it_repeats_repository.dart';
 
 class ViewQuestionPaper {
-  late final LocalRepository localRepository;
+  final ItRepeatsRepository itRepeatsRepository;
 
-  ViewQuestionPaper({required this.localRepository});
+  ViewQuestionPaper({required this.itRepeatsRepository});
 
-  Future<void> call(QuestionPaperEntity questionPaperEntity) {
-    return localRepository.viewQuestionPaper(questionPaperEntity);
+  Future<void> call(String fileURL) {
+    return itRepeatsRepository.viewQuestionPaper(fileURL);
   }
 }

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:it_repeats/features/presentation/pages/SelectionPage.dart';
 
 void main() {
   runApp(const MyApp());
@@ -14,31 +16,14 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      title: "It Repeats",
-      debugShowCheckedModeBanner: true,
-      home: HomePage(),
-    );
-  }
-}
-
-class HomePage extends StatefulWidget {
-  const HomePage({Key? key}) : super(key: key);
-
-  @override
-  State<HomePage> createState() => _HomePageState();
-}
-
-class _HomePageState extends State<HomePage> {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text("It Repeats"),
+    return ScreenUtilInit(
+      builder: (context, child) => MaterialApp(
+        title: "It Repeats",
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(fontFamily: 'Proxima'),
+        home: const SelectionPage(),
       ),
-      body: const Center(
-        child: Text("It Repeats Initial Phase"),
-      ),
+      designSize: const Size(360, 640),
     );
   }
 }
