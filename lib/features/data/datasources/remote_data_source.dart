@@ -21,10 +21,7 @@ class RemoteDataSourceImpl implements RemoteDataSource {
       String semester, String subject, String year) async {
     final response = await client.get(
       Uri.parse(
-          'https://it-repeats-backend.onrender.com/api/question-paper/get-details'),
-      // TODO: Add Parameters to API URL
-      // TODO: Use http.post instead of get
-      // FIXME: Use jsonEncode to send parameters
+          'https://itrepeats-backend-2p5h.vercel.app/api/question-paper/get-sub?departmentName=$departmentName&semester=$semester&subjectName=$subject&year=$year'),
       headers: {
         'Content-Type': 'application/json',
       },

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:it_repeats/features/presentation/pages/ShowOptionsPage.dart';
 
 extension StringExtension on String {
   String capitalize() {
@@ -7,7 +8,8 @@ extension StringExtension on String {
   }
 }
 
-Widget selectOptions(String type) {
+Widget selectOptions(BuildContext context, String type,
+    List<String> optionsList, String holdingVariable) {
   type = type.toLowerCase();
 
   return GestureDetector(
@@ -42,9 +44,40 @@ Widget selectOptions(String type) {
             ],
           ),
         ),
+        Positioned(
+          left: 12,
+          bottom: 12,
+          child: Container(
+            width: 130,
+            padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 8),
+            decoration: const BoxDecoration(
+              color: Color.fromRGBO(34, 34, 34, 0.5),
+              borderRadius: BorderRadius.all(
+                Radius.circular(4),
+              ),
+            ),
+            child: Text(
+              holdingVariable,
+              style: const TextStyle(
+                  fontSize: 12,
+                  color: Colors.white,
+                  fontWeight: FontWeight.w700,
+                  overflow: TextOverflow.ellipsis),
+            ),
+          ),
+        ),
       ],
     ),
-    onTap: () {},
+    onTap: () {
+      Navigator.of(context).push(
+        MaterialPageRoute(
+          builder: (context) => ShowOptionsPage(
+            listOfOptions: optionsList,
+            choose: type,
+          ),
+        ),
+      );
+    },
     onLongPress: () {
       Fluttertoast.showToast(msg: "Select ${type.capitalize()}");
     },

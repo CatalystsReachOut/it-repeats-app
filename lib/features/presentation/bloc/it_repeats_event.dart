@@ -1,7 +1,7 @@
 part of 'it_repeats_bloc.dart';
 
 abstract class ItRepeatsEvent extends Equatable {
-  // const ItRepeatsEvent([List props = const <dynamic>[]]) : super();
+  const ItRepeatsEvent([List props = const <dynamic>[]]) : super();
 
   @override
   List<Object> get props => [];
@@ -13,7 +13,7 @@ class GetQuestionPaperEntity extends ItRepeatsEvent {
   final String subject;
   final String year;
 
-  GetQuestionPaperEntity(
+  const GetQuestionPaperEntity(
       this.departmentName, this.semester, this.subject, this.year);
 
   @override

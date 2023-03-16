@@ -6,16 +6,6 @@ import 'package:it_repeats/features/domain/usecases/search_question_paper.dart';
 part 'it_repeats_event.dart';
 part 'it_repeats_state.dart';
 
-// class ItRepeatsBloc extends Bloc<ItRepeatsEvent, ItRepeatsState> {
-//   final FetchQuestionPaper fetchQuestionPaper;
-//
-//   ItRepeatsBloc(this.fetchQuestionPaper) : super(ItRepeatsInitial()) {
-//     on<GetQuestionPaperEntity>((event, emit) {
-//       (departmentName, semester, subject, year) async* {};
-//     });
-//   }
-// }
-
 class ItRepeatsBloc extends Bloc<ItRepeatsEvent, ItRepeatsState> {
   final FetchQuestionPaper fetchQuestionPaper;
 

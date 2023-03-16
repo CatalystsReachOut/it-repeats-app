@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:it_repeats/features/presentation/pages/ShowOptionsPage.dart';
+import 'package:it_repeats/features/presentation/bloc/it_repeats_bloc.dart';
+import 'package:it_repeats/features/presentation/pages/ViewPDF.dart';
+// import 'package:it_repeats/features/presentation/pages/ShowOptionsPage.dart';
 import 'package:it_repeats/features/presentation/widgets/SelectOptionsWidget.dart';
+import 'package:it_repeats/features/presentation/widgets/ListData.dart';
 
 class SelectionPage extends StatefulWidget {
   const SelectionPage({Key? key}) : super(key: key);
@@ -11,6 +15,11 @@ class SelectionPage extends StatefulWidget {
 }
 
 class _SelectionPageState extends State<SelectionPage> {
+  void dispatchItRepeats() {
+    BlocProvider.of<ItRepeatsBloc>(context).add(GetQuestionPaperEntity(
+        selectDepartment, selectSemester, selectSubject, selectYear));
+  }
+
   @override
   void initState() {
     super.initState();
@@ -65,7 +74,9 @@ class _SelectionPageState extends State<SelectionPage> {
                       ),
                     ),
                     onTap: () {
-                      Fluttertoast.showToast(msg: "Hello");
+                      Fluttertoast.showToast(
+                          msg:
+                              "See Contributions. Redirects to https://ItRepeats.in");
                     },
                   )
                 ],
@@ -77,12 +88,24 @@ class _SelectionPageState extends State<SelectionPage> {
                   SizedBox(
                     width: 154,
                     height: 154,
-                    child: selectOptions("department"),
+                    child: selectOptions(
+                        context,
+                        "department",
+                        [
+                          "Computer Science",
+                          "Mechanical Engineering",
+                          "Electronics and Communication"
+                        ],
+                        selectDepartment),
                   ),
                   SizedBox(
                     width: 154,
                     height: 154,
-                    child: selectOptions("semester"),
+                    child: selectOptions(
+                        context,
+                        "semester",
+                        ["1", "2", "3", "4", "5", "6", "7", "8"],
+                        selectSemester),
                   ),
                 ],
               ),
@@ -93,12 +116,17 @@ class _SelectionPageState extends State<SelectionPage> {
                   SizedBox(
                     width: 154,
                     height: 154,
-                    child: selectOptions("subject"),
+                    child: selectOptions(
+                        context,
+                        "subject",
+                        ["ARM", "Thermodynamics", "Data Structures"],
+                        selectSubject),
                   ),
                   SizedBox(
                     width: 154,
                     height: 154,
-                    child: selectOptions("year"),
+                    child: selectOptions(context, "year",
+                        ["2022", "2021", "2020", "2019", "2018"], selectYear),
                   ),
                 ],
               ),
@@ -108,10 +136,7 @@ class _SelectionPageState extends State<SelectionPage> {
                   onTap: () {
                     Navigator.of(context).push(
                       MaterialPageRoute(
-                        builder: (context) => const ShowOptionsPage(
-                          listOfOptions: ["CSE", "ECE", "MECH"],
-                        ),
-                      ),
+                          builder: (context) => const ViewPDFFile()),
                     );
                   },
                   onLongPress: () {

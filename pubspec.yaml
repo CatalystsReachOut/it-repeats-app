@@ -39,6 +39,8 @@ dependencies:
   fluttertoast: ^8.1.2
   flutter_screenutil: ^5.6.0
   google_fonts: ^3.0.1
+  syncfusion_flutter_pdfviewer: ^20.4.53
+  flutter_windowmanager: ^0.2.0
 
   get_it: ^7.2.0
   flutter_bloc: ^8.1.1
