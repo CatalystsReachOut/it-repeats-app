@@ -1,7 +1,8 @@
 String selectDepartment = "Computer Science";
-String selectSemester = "3";
-String selectSubject = "Data Structures";
-String selectYear = "2020";
+String selectSemester = "4";
+String selectSubject = "Operating Systems";
+String selectYear = "2022";
+String? dropDownSelectedItem = "ISA1";
 
 final Map<String, String> departmentAbbrevs = {
   "Architecture": "ARCH",

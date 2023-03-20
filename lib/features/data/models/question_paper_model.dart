@@ -8,7 +8,7 @@ class QuestionPaperModel extends QuestionPaperEntity {
     required String subjectName,
     required String examName,
     required String fileURL,
-    required int year,
+    required String year,
   }) : super(
             id: id,
             departmentName: departmentName,
@@ -20,13 +20,14 @@ class QuestionPaperModel extends QuestionPaperEntity {
 
   factory QuestionPaperModel.fromJson(Map<String, dynamic> json) {
     return QuestionPaperModel(
-        id: json['data'][0]['id'],
-        departmentName: json['data'][0]['departmentName'],
-        semester: json['data'][0]['semester'],
-        subjectName: json['data'][0]['subjectName'],
-        examName: json['data'][0]['examName'],
-        fileURL: json['data'][0]['fileUrl'],
-        year: json['data'][0]['year']);
+      id: json['data'][0]['id'],
+      departmentName: json['data'][0]['data']['departmentName'],
+      semester: json['data'][0]['data']['semester'],
+      subjectName: json['data'][0]['data']['subjectName'],
+      examName: json['data'][0]['data']['examName'],
+      fileURL: json['data'][0]['data']['fileUrl'],
+      year: json['data'][0]['data']['year'],
+    );
   }
 
   Map<String, dynamic> toJson() {

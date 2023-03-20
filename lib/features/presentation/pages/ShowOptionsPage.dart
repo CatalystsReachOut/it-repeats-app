@@ -39,7 +39,7 @@ class _ShowOptionsPageState extends State<ShowOptionsPage> {
             physics: const AlwaysScrollableScrollPhysics(),
             scrollDirection: Axis.vertical,
             shrinkWrap: true,
-            itemCount: widget?.listOfOptions.length ?? 0,
+            itemCount: widget.listOfOptions.length,
             itemBuilder: (context, index) {
               return ListTile(
                 onTap: () {

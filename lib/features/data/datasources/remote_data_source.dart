@@ -21,7 +21,8 @@ class RemoteDataSourceImpl implements RemoteDataSource {
       String semester, String subject, String year) async {
     final response = await client.get(
       Uri.parse(
-          'https://itrepeats-backend-2p5h.vercel.app/api/question-paper/get-sub?departmentName=$departmentName&semester=$semester&subjectName=$subject&year=$year'),
+          // "https://itrepeats-backend-2p5h.vercel.app/api/question-paper/get-details?departmentName=Computer Science&subjectName=Operating Systems&semester=4&year=2022",
+          'https://itrepeats-backend-2p5h.vercel.app/api/question-paper/get-details?departmentName=$departmentName&semester=$semester&subjectName=$subject&year=$year'),
       headers: {
         'Content-Type': 'application/json',
       },

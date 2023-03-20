@@ -6,8 +6,8 @@ class QuestionPaperEntity extends Equatable {
   final String? semester;
   final String? subjectName;
   final String? examName;
-  final String? fileURL;
-  final int? year;
+  final String fileURL;
+  final String? year;
 
   const QuestionPaperEntity({
     required this.id,
