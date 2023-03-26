@@ -20,7 +20,6 @@ class QuestionPaperEntity extends Equatable {
   });
 
   @override
-  // TODO: implement props
   List<Object?> get props =>
       [id, departmentName, semester, subjectName, examName, fileURL, year];
 }

@@ -7,12 +7,10 @@ abstract class Failure extends Equatable {
 // General Failures
 class ServerFailure extends Failure {
   @override
-  // TODO: implement props
   List<Object?> get props => throw UnimplementedError();
 }
 
 class CacheFailure extends Failure {
   @override
-  // TODO: implement props
   List<Object?> get props => throw UnimplementedError();
 }

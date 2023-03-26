@@ -12,10 +12,11 @@ class GetQuestionPaperEntity extends ItRepeatsEvent {
   final String semester;
   final String subject;
   final String year;
+  final String examName;
 
-  const GetQuestionPaperEntity(
-      this.departmentName, this.semester, this.subject, this.year);
+  const GetQuestionPaperEntity(this.departmentName, this.semester, this.subject,
+      this.year, this.examName);
 
   @override
-  List<Object> get props => [departmentName, semester, subject, year];
+  List<Object> get props => [departmentName, semester, subject, year, examName];
 }

@@ -5,9 +5,13 @@ import 'package:it_repeats/features/presentation/widgets/ListData.dart';
 class ShowOptionsPage extends StatefulWidget {
   final List<String> listOfOptions;
   final String choose;
+  final ChangeManager changeManager;
 
   const ShowOptionsPage(
-      {Key? key, required this.listOfOptions, required this.choose})
+      {Key? key,
+      required this.listOfOptions,
+      required this.choose,
+      required this.changeManager})
       : super(key: key);
 
   @override
@@ -18,15 +22,25 @@ class _ShowOptionsPageState extends State<ShowOptionsPage> {
   void assignValueToVariable(String choose, String assign) {
     setState(() {
       if (choose == "department") {
-        selectDepartment = assign;
+        widget.changeManager.department = assign;
       } else if (choose == "semester") {
-        selectSemester = assign;
+        widget.changeManager.semester = assign;
       } else if (choose == "subject") {
-        selectSubject = assign;
+        widget.changeManager.subject = assign;
       } else if (choose == "year") {
-        selectYear == assign;
+        widget.changeManager.year = assign;
       }
     });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
   }
 
   @override
@@ -45,7 +59,9 @@ class _ShowOptionsPageState extends State<ShowOptionsPage> {
                 onTap: () {
                   assignValueToVariable(
                       widget.choose, widget.listOfOptions[index]);
+
                   Fluttertoast.showToast(msg: widget.listOfOptions[index]);
+                  widget.changeManager.updateChanges();
                   Navigator.pop(context);
                 },
                 title: Row(

@@ -21,11 +21,12 @@ class ItRepeatsRepositoryImpl implements ItRepeatsRepository {
     String semester,
     String subject,
     String year,
+    String examName,
   ) async {
     if (await networkInfo.isConnected) {
       try {
         final remoteData = await remoteDataSource.fetchQuestionPaper(
-            departmentName, semester, subject, year);
+            departmentName, semester, subject, year, examName);
         return Right(remoteData);
       } on ServerException {
         return Left(ServerFailure());
@@ -37,7 +38,6 @@ class ItRepeatsRepositoryImpl implements ItRepeatsRepository {
 
   @override
   Future<void> viewQuestionPaper(String fileURL) {
-    // TODO: implement viewQuestionPaper
     throw UnimplementedError();
   }
 }

@@ -11,13 +11,11 @@ class ItRepeatsInitial extends ItRepeatsState {
 
 class Empty extends ItRepeatsState {
   @override
-  // TODO: implement props
   List<Object?> get props => throw UnimplementedError();
 }
 
 class Loading extends ItRepeatsState {
   @override
-  // TODO: implement props
   List<Object?> get props => throw UnimplementedError();
 }
 
@@ -36,6 +34,5 @@ class Error extends ItRepeatsState {
   const Error({required this.message});
 
   @override
-  // TODO: implement props
   List<Object?> get props => [message];
 }

@@ -4,7 +4,11 @@ import 'package:dartz/dartz.dart';
 
 abstract class ItRepeatsRepository {
   Future<Either<Failure, QuestionPaperEntity>> fetchQuestionPaper(
-      String departmentName, String semester, String subject, String year);
+      String departmentName,
+      String semester,
+      String subject,
+      String year,
+      String examName);
 
   Future<void> viewQuestionPaper(String fileURL);
 }

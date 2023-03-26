@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:it_repeats/features/presentation/bloc/it_repeats_bloc.dart';
+import 'package:it_repeats/features/presentation/widgets/ListData.dart';
+import 'package:provider/provider.dart';
 import 'injection_container.dart' as di;
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:it_repeats/features/presentation/pages/SelectionPage.dart';
@@ -9,11 +11,16 @@ import 'package:it_repeats/features/presentation/pages/SelectionPage.dart';
 void main() async {
   await di.init();
 
-  runApp(MultiBlocProvider(providers: [
-    BlocProvider<ItRepeatsBloc>(
-      create: (context) => di.sl<ItRepeatsBloc>(),
+  runApp(
+    MultiBlocProvider(
+      providers: [
+        BlocProvider<ItRepeatsBloc>(
+          create: (context) => di.sl<ItRepeatsBloc>(),
+        ),
+      ],
+      child: const MyApp(),
     ),
-  ], child: const MyApp()));
+  );
 }
 
 class MyApp extends StatefulWidget {

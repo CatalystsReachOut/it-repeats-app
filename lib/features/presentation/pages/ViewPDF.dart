@@ -6,7 +6,9 @@ import 'package:it_repeats/features/presentation/widgets/ListData.dart';
 import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
 
 class ViewPDFFile extends StatefulWidget {
-  const ViewPDFFile({Key? key}) : super(key: key);
+  const ViewPDFFile({Key? key, required this.stateManager}) : super(key: key);
+
+  final ChangeManager stateManager;
 
   @override
   State<ViewPDFFile> createState() => _ViewPDFFileState();
@@ -18,8 +20,14 @@ class _ViewPDFFileState extends State<ViewPDFFile> {
 
   void dispatchItRepeats() {
     BlocProvider.of<ItRepeatsBloc>(context).add(
+      // TODO: Change dispatch parameters!
+
       GetQuestionPaperEntity(
-          selectDepartment, selectSemester, selectSubject, selectYear),
+          widget.stateManager.selectDepartment,
+          widget.stateManager.selectSemester,
+          widget.stateManager.selectSubject,
+          widget.stateManager.selectYear,
+          dropDownSelectedItem!),
     );
   }
 
@@ -59,6 +67,7 @@ class _ViewPDFFileState extends State<ViewPDFFile> {
               onChanged: (value) {
                 setState(() {
                   dropDownSelectedItem = value;
+                  dispatchItRepeats();
                 });
               },
             ),
@@ -80,11 +89,8 @@ class _ViewPDFFileState extends State<ViewPDFFile> {
                 child: CircularProgressIndicator(),
               );
             } else if (state is Loaded) {
-              // print("State Here -->" + state.questionPaperEntity.toString());
-
               return SfPdfViewer.network(
                 state.questionPaperEntity.fileURL,
-                // 'https://storage.googleapis.com/it-repeats-ea39a.appspot.com/Shreyas_Final.pdf?GoogleAccessId=firebase-adminsdk-hufji%40it-repeats-ea39a.iam.gserviceaccount.com&Expires=16446997800&Signature=kdNGA3nPFwjIHT2OKdhUF%2FGoxBE8Akbxrggo3qSAOwsM3TOjZdWb3A0OX3cr0eDx7IvusWK51LFw3qN2zqGf2lwp26sPtI2%2FLkL%2BtrkFYk%2BdHAhhq59mfyqp7sSBM50P%2FSPygMJ%2FnHW6ylS6Q%2B6TWwRYxapOGkUt8oJE9R%2FrMqVDT2BOj0g2%2B9Y3MdyQI73%2FyhTHJ05dSESECHbOVOjsUMPrz9IkC1Yec06nLX6mQjo3ZxcOgvg3vOqqYe7lF0%2BbMmnpE0%2FQlAp%2BIM6O9coRoEcuFddGe78zZM2V2%2BpiqfeTglJwMY%2BfddMiKYZ0cuogY6IgPMebOzYDn1885Cx5QQ%3D%3D',
                 controller: _pdfViewerController,
                 key: _pdfViewerKey,
               );

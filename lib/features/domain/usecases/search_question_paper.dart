@@ -13,7 +13,7 @@ class FetchQuestionPaper implements UseCase<QuestionPaperEntity, Params> {
   @override
   Future<Either<Failure, QuestionPaperEntity>> call(Params params) async {
     return await itRepeatsRepository.fetchQuestionPaper(params.departmentName,
-        params.semester, params.subjectName, params.year);
+        params.semester, params.subjectName, params.year, params.examName);
   }
 }
 
@@ -22,13 +22,17 @@ class Params extends Equatable {
   final String semester;
   final String subjectName;
   final String year;
+  final String examName;
 
-  const Params(
-      {required this.departmentName,
-      required this.semester,
-      required this.subjectName,
-      required this.year});
+  const Params({
+    required this.departmentName,
+    required this.semester,
+    required this.subjectName,
+    required this.year,
+    required this.examName,
+  });
 
   @override
-  List<Object?> get props => [departmentName, semester, subjectName, year];
+  List<Object?> get props =>
+      [departmentName, semester, subjectName, year, examName];
 }

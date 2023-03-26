@@ -16,14 +16,17 @@ class ItRepeatsBloc extends Bloc<ItRepeatsEvent, ItRepeatsState> {
       final semester = event.semester;
       final subjectName = event.subject;
       final year = event.year;
+      final examName = event.examName;
 
       emit(Loading());
 
       final failureOrQuestionPaper = await fetchQuestionPaper(Params(
-          departmentName: departmentName,
-          semester: semester,
-          subjectName: subjectName,
-          year: year));
+        departmentName: departmentName,
+        semester: semester,
+        subjectName: subjectName,
+        year: year,
+        examName: examName,
+      ));
 
       emit(failureOrQuestionPaper.fold(
           (failure) => throw UnimplementedError(),

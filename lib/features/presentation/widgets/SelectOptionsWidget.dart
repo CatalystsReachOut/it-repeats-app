@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:it_repeats/features/presentation/pages/ShowOptionsPage.dart';
+import 'package:it_repeats/features/presentation/widgets/ListData.dart';
 
 extension StringExtension on String {
   String capitalize() {
@@ -8,8 +9,12 @@ extension StringExtension on String {
   }
 }
 
-Widget selectOptions(BuildContext context, String type,
-    List<String> optionsList, String holdingVariable) {
+Widget selectOptions(
+    BuildContext context,
+    String type,
+    List<String> optionsList,
+    String holdingVariable,
+    ChangeManager changeManager) {
   type = type.toLowerCase();
 
   return GestureDetector(
@@ -48,7 +53,8 @@ Widget selectOptions(BuildContext context, String type,
           left: 12,
           bottom: 12,
           child: Container(
-            width: 130,
+            // width: 130,
+            constraints: const BoxConstraints(maxWidth: 130),
             padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 8),
             decoration: const BoxDecoration(
               color: Color.fromRGBO(34, 34, 34, 0.5),
@@ -74,6 +80,7 @@ Widget selectOptions(BuildContext context, String type,
           builder: (context) => ShowOptionsPage(
             listOfOptions: optionsList,
             choose: type,
+            changeManager: changeManager,
           ),
         ),
       );
