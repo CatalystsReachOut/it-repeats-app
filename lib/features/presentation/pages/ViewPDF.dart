@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-// import 'package:flutter_windowmanager/flutter_windowmanager.dart';
 import 'package:it_repeats/features/presentation/bloc/it_repeats_bloc.dart';
 import 'package:it_repeats/features/presentation/widgets/ListData.dart';
 import 'package:syncfusion_flutter_pdfviewer/pdfviewer.dart';
+import 'package:screen_protector/screen_protector.dart';
 
 class ViewPDFFile extends StatefulWidget {
   const ViewPDFFile({Key? key, required this.stateManager}) : super(key: key);
@@ -20,29 +20,35 @@ class _ViewPDFFileState extends State<ViewPDFFile> {
 
   void dispatchItRepeats() {
     BlocProvider.of<ItRepeatsBloc>(context).add(
-      // TODO: Change dispatch parameters!
-
       GetQuestionPaperEntity(
-          widget.stateManager.selectDepartment,
-          widget.stateManager.selectSemester,
-          widget.stateManager.selectSubject,
-          widget.stateManager.selectYear,
-          dropDownSelectedItem!),
+        widget.stateManager.selectDepartment,
+        widget.stateManager.selectSemester,
+        widget.stateManager.selectSubject,
+        widget.stateManager.selectYear,
+        dropDownSelectedItem!,
+      ),
     );
+  }
+
+  void protectorOn() async {
+    await ScreenProtector.preventScreenshotOn();
+  }
+
+  void protectorOff() async {
+    await ScreenProtector.preventScreenshotOff();
   }
 
   @override
   void initState() {
+    protectorOn();
     dispatchItRepeats();
-
     _pdfViewerController = PdfViewerController();
-    // FlutterWindowManager.addFlags(FlutterWindowManager.FLAG_SECURE);
     super.initState();
   }
 
   @override
   void dispose() {
-    // FlutterWindowManager.clearFlags(FlutterWindowManager.FLAG_SECURE);
+    protectorOff();
     super.dispose();
   }
 
